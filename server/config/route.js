@@ -17,7 +17,7 @@ router.get('/', restaurantController.showRestaurants);
 
 router.get('/customers', restaurantController.getAllCustomers);
 
-// router.get('/customers/customer', restaurantController.showCustomer);
+router.get('/customers/customer/:id', restaurantController.showCustomer);
 
 
 router.post('/add', restaurantController.addCustomer);

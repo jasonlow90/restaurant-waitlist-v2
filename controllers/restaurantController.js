@@ -26,12 +26,14 @@ function getAllCustomers(req, res){
 }
 
 function showCustomer(req, res){
-  // function findCustomer(customer){
-  //   return customer.customerName
-  // }
+
+  function findCustomer(customers){
+    return customers.customerName === req.params.customer;
+  }
+
   Restaurant.findOne({restaurantName: "Macdonald"}, function(err, restaurant){
     if(err) res.status(402).json({message: err.errmsg});
-    res.status(200).json(restaurant.customers.find());
+    res.status(200).json(restaurant.customers.find(findCustomer));
   });
 }
 
