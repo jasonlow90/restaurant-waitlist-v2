@@ -23,3 +23,11 @@ var addTimeToETA = function(etaTimeInMins) {
 // call the function for testing purposes
 addTimeToETA(etaTimeInMins);
 console.log(timeETA._d);
+
+// this function resets the ETA to now, then runs the addTimeToETA function.
+// it will be used if we want to update a customers waiting time to a new value.
+var resetTimeOfETA = function(etaTimeInMins){
+  eta = new Date();
+  timeETA = moment(eta);
+  addTimeToETA(etaTimeInMins);
+};
