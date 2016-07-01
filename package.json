@@ -22,6 +22,7 @@
     "express": "^4.14.0",
     "lodash": "^4.13.1",
     "method-override": "^2.3.6",
+    "moment": "^2.13.0",
     "mongo": "^0.1.0",
     "mongoose": "^4.5.3",
     "node-restful": "^0.2.5",
