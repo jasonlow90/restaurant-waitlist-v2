@@ -1,0 +1,31 @@
+{
+  "name": "restaurant-waitlist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noccer2016/restaurant-waitlist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noccer2016/restaurant-waitlist/issues"
+  },
+  "homepage": "https://github.com/noccer2016/restaurant-waitlist#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.13.1",
+    "method-override": "^2.3.6",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.5.3",
+    "node-restful": "^0.2.5",
+    "resourcejs": "^1.3.0",
+    "xpress": "^2.4.6"
+  }
+}
