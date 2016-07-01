@@ -17,10 +17,16 @@ router.get('/', restaurantController.showRestaurants);
 
 router.get('/customers', restaurantController.getAllCustomers);
 
-router.get('/customers/customer', restaurantController.showCustomer);
+router.get('/customers/customer/:id', restaurantController.showCustomer);
 
 
 router.post('/add', restaurantController.addCustomer);
+
+router.get('/populate', restaurantController.populate);
+
+
+router.post('/restaurant/add', restaurantController.addRestaurant);
+
 
 router.post('/remove', restaurantController.removeCustomer);
 

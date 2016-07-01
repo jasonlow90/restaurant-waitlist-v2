@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var timeController = require('../controllers/timeController');
+var Customer = require('./customer');
 
 // Create the CustomerSchema.
 var RestaurantSchema = new mongoose.Schema({
@@ -28,37 +29,11 @@ var RestaurantSchema = new mongoose.Schema({
       type: String,
       required: true
    },
-   customers : [
-     {
-       customerName: {
-         type: String,
-         required: true,
-         unique: true
-      },
-      phone: {
-         type: String,
-         required: true
-      },
-      isVip: {
-         type: Boolean,
-         default: false
-      },
-      heads: {
-         type: Number,
-         required: true
-      },
-      startedWaiting: {
-         type: Date,
-         default: Date.now,
-         required: true
-      },
-      eta: {
-         type: Number,
-         required: true
-      },
-      finishedWaiting: { type: Date,  }
-    },
-  ]
+   customers : [{
+     type: mongoose.Schema.ObjectId,
+     ref: 'Customer'
+   }
+ ]
 });
 
 // Restaurant.pre.save function to take startedWaiting time
@@ -74,4 +49,4 @@ var RestaurantSchema = new mongoose.Schema({
 // });
 
 // Export the model.
-module.exports = mongoose.model('restaurant', RestaurantSchema);
+module.exports = mongoose.model('Restaurant', RestaurantSchema);

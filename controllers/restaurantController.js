@@ -1,19 +1,12 @@
 var Restaurant = require('../models/restaurant');
 var User = require('../models/user');
-// var Customer = require('../models/customer');
+var Customer = require('../models/customer');
 
 
 function showRestaurants(req, res){
   Restaurant.find({}, function(err, user){
     if(err) res.status(401).json({message: err.errmsg});
-    // Restaurant.find({user._id}, function(err, restaurant){
-    //   if(err) res.status(401).json({message: err.errmsg});
-    //   Customer.find({restaurant._id}, function(err, customer){
-    //     if(err) res.status(401).json({message: err.errmsg});
         res.json(user);
-
-    //   })
-    // })
   });
 }
 
@@ -37,41 +30,57 @@ function showCustomer(req, res){
   });
 }
 
-function addCustomer(req, res){
-//   var d = new Date();
-//
-//   var n = d.getTime();
-//   var jason = {
-//     customerName: 'Jane',
-//     phone: '0412345678',
-//     isVip: false,
-//     heads: 2,
-//     startedWaiting: n,
-//     eta: 10,
-//     finishedWaiting: n
-//   };
-  var customerParams = req.body;
+function addRestaurant(req, res){
 
-  Restaurant.findOneAndUpdate({restaurantName: 'Macdonald'},{$push: {customers: customerParams}} , function(err, restaurant){
-    if(err) res.status(401).json({message: err.errmsg});
-    res.json("Successfully Added!");
+  var restaurantParams = req.body;
+
+  Restaurant.create(restaurantParams , function(err, restaurant){
+    if(err) res.status(401).json({message: "Hello"});
+    res.json(restaurant);
+  });
+
+}
+
+function addCustomer(req, res){
+
+
+
+  Restaurant.findOne({_id: "577606322f016641459de0e0" } , function(err, restaurant){
+    if(err) res.status(401).json({message: "Hello"});
+    Customer.create({
+      customerName: "Peter",
+      phone: "0430852260",
+      isVip: true,
+      heads: 3,
+      eta: 10,
+      _restaurant: restaurant._id
+    }, function(err, customer){
+      if(err) res.status(400).json({message: "FUCK!"});
+      // res.json(customer);
+      Restaurant.findOneAndUpdate({_id: "577606322f016641459de0e0"},{$push: {customers: customer}}, function(err, rest){
+        if(err) res.status(400).json({message: "FUCK ME"});
+        res.status(202).json(rest);
+      });
+    }
+  );
+  });
+}
+
+function populate(req, res){
+//   Customer.findOne({customerName: "Jason"}).populate('_restaurant', [])
+// }
+
+
+
+  Restaurant.findOne({_id: "577606322f016641459de0e0" }).populate('customers').exec(function (err, customer){
+    if(err) res.json({message: "fuck me?"});
+    res.json(customer);
   });
 
 }
 
 function removeCustomer(req,res){
 
-  // var d = new Date();
-  // var n = d.getTime();
-  // var jason = {
-  //   customerName: 'Jason',
-  //   phone: '0412345678',
-  //   isVip: false,
-  //   heads: 2,
-  //   startedWaiting: n,
-  //   eta: 10,
-  //   finishedWaiting: n
-  // };
 
   var customerParams = req.body;
   Restaurant.findOneAndUpdate({restaurantName: 'Macdonald'},{$pull: {customers: customerParams}} , function(err, restaurant){
@@ -82,11 +91,18 @@ function removeCustomer(req,res){
 
 }
 
+  // Keeping update code for reference:
+  // Restaurant.findOneAndUpdate({restaurantName: 'Macdonald'},{$push: {customers: customerParams}} , function(err, restaurant){
+  //   if(err) res.status(401).json({message: err.errmsg});
+  //   res.json("Successfully Added!");
+  // });
 
 module.exports = {
   showRestaurants: showRestaurants,
+  addRestaurant: addRestaurant,
   addCustomer: addCustomer,
   removeCustomer: removeCustomer,
   getAllCustomers: getAllCustomers,
+  populate: populate,
   showCustomer: showCustomer
 };
