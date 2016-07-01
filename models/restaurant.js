@@ -55,11 +55,12 @@ var RestaurantSchema = new mongoose.Schema({
          type: Number,
          required: true
       },
-      finishedWaiting: { type: Date }
+      finishedWaiting: { type: Date,  }
     },
   ]
 });
 
+// Restaurant.pre.save function here that will work with the finishedWaiting time
 
 // Export the model.
 module.exports = mongoose.model('restaurant', RestaurantSchema);
