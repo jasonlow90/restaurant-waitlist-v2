@@ -11,3 +11,8 @@ etaTimeInMins = 5;
 
 console.log(timeNow.toISOString());
 console.log(timeETA.toISOString());
+
+var addTimeToETA = function(etaTimeInMins) {
+  timeETA = timeETA.add(etaTimeInMins, 'minutes');
+};
+addTimeToETA(etaTimeInMins);
