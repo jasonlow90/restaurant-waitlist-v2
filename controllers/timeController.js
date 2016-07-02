@@ -2,12 +2,12 @@ var moment = require('moment');
 moment().format();
 
 // Initialise the time right now
-var now = new Date();
-var timeNow = moment(now);
+var nowStarter = new Date();
+var timeNow = moment(nowStarter);
 
 // Initialise the time right now, to be manipulated by the model
-var eta = new Date();
-var timeETA = moment(eta);
+var etaStarter= new Date();
+var timeETA = moment(etaStarter);
 
 // How many minutes the customer will need to wait
 etaTimeInMins = 10;
@@ -28,8 +28,8 @@ console.log(timeETA._d);
 // this function resets the ETA to now, then runs the addTimeToETA function.
 // it will be used if we want to update a customers waiting time to a new value.
 var resetTimeOfETA = function(time){
-  eta = new Date();
-  timeETA = moment(eta);
+  etaStarter= new Date();
+  timeETA = moment(etaStarter);
   addTimeToETA(time);
 };
 resetTimeOfETA(20); // testing hard coded value of 20
