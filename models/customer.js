@@ -16,7 +16,7 @@ var Customer = new mongoose.Schema({
    phone: {
       type: String,
       required: true,
-      unique: true
+      // unique: true
    },
    isVip: {
       type: Boolean,
@@ -41,7 +41,7 @@ var Customer = new mongoose.Schema({
    }
 });
 
-// User middleware
+// Customer middleware
 Customer.pre('save', function(next) {
   var customer = this;
   var now = new Date();
