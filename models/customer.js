@@ -3,8 +3,8 @@ var Restaurant = require('./restaurant');
 var timeController = require('../controllers/timeController');
 var moment = require('moment');
 
-// Create the CustomerSchema.
-var CustomerSchema = new mongoose.Schema({
+// Create the Customer Schema.
+var Customer = new mongoose.Schema({
    _restaurant: {
      type: mongoose.Schema.ObjectId,
      ref: 'Restaurant'
@@ -15,7 +15,8 @@ var CustomerSchema = new mongoose.Schema({
    },
    phone: {
       type: String,
-      required: true
+      required: true,
+      unique: true
    },
    isVip: {
       type: Boolean,
@@ -41,26 +42,16 @@ var CustomerSchema = new mongoose.Schema({
 });
 
 // User middleware
-CustomerSchema.pre('save', function(next) {
-  //           ⤹ the customer
-  // var customer = this;
-
-  timeController.resetTimeOfETA(CustomerSchema.eta);
-  Customer.finishedWaiting = timeController.timeETA;
-
-  // if(!user.isModified('password')) return next();
-  // bcrypt.genSalt(10, function(err, salt) {
-  //   if (err) return next(err);
-  //   // 3 arguments: password, salt, hash
-  //   bcrypt.hash(user.password, salt, function(err, hash) {
-  //     if (err) return next(err);
-  //     user.password = hash;
-  //     next();
-  //   });
-  // });
+Customer.pre('save', function(next) {
+  var customer = this;
+  var now = new Date();
+  var timeETA = moment(now);
+  timeETA = timeETA.add(customer.eta, 'minutes');
+  this.finishedWaiting = timeETA;
+  next();
 });
 
 // Export the model.
-var Customer = mongoose.model('Customer', CustomerSchema);
+var Customer = mongoose.model('Customer', Customer);
 
 module.exports = Customer;
