@@ -93,13 +93,7 @@ var jason = new User({
 
 // Add Middleware necessary for REST API's
 app.use(routes);
-
-
-//
-  // Load the models.
-
-
-  app.listen(3000, function(){
-
-    console.log('Listening on port 3000...');
-  });
+// Load the models.
+app.listen(3000, function() {
+  console.log('Listening on port 3000...');
+});
