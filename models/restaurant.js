@@ -25,6 +25,9 @@ var RestaurantSchema = new mongoose.Schema({
       type: String,
       required: true
    },
+   restaurantNameSuburb: {
+     type: String
+   },
    postcode: {
       type: String,
       required: true
@@ -56,17 +59,16 @@ var RestaurantSchema = new mongoose.Schema({
  ]
 });
 
-// Restaurant.pre.save function to take startedWaiting time
-// and use it to create finishedWaiting time using the 'ETA' time value
-// i.e. Add a customer at '15:10', eta time is 15mins, therefore finishedWaiting will be '15:25'
-// RestaurantSchema.pre('save', function(next) {
-//   var now = new Date();
-//   this.updated_at = now;
-//   if (!this.created_at) {
-//     this.created_at = now;
-//   }
-//   next(); //must call this
-// });
+Restaurant.pre('save', function(next) {
+  var retaurant = this;
+  // NOC: pseudo code
+  // take the restaurantName value, add a space, then add on the suburb name.
+  // lowercase the whole thing
+  // remove anything except letters and numbers
+  // replace spaces with dashes
+  // insert final string into restaurantNameSuburb
+  next();
+});
 
 // Export the model.
 module.exports = mongoose.model('Restaurant', RestaurantSchema);
