@@ -65,28 +65,28 @@ var jason = new User({
 // });
 // User.create(jason);
 //
-var d = new Date();
-var n = d.getTime();
-var macdonald = new Restaurant({
-  restaurantName: 'Macdonald',
-  website: 'www.google.com',
-  phone: '123456789',
-  address: 'melbourne street',
-  suburb: 'Melbourne',
-  postcode : '3030',
-  customers: [
-    {
-      customerName: 'Peter',
-      phone: '0412345678',
-      isVip: true,
-      heads: 2,
-      startedWaiting: n,
-      eta: 10,
-      finishedWaiting: n
-    }
-  ]
-
-});
+// var d = new Date();
+// var n = d.getTime();
+// var macdonald = new Restaurant({
+//   restaurantName: 'Macdonald',
+//   website: 'www.google.com',
+//   phone: '123456789',
+//   address: 'melbourne street',
+//   suburb: 'Melbourne',
+//   postcode : '3030',
+//   customers: [
+//     {
+//       customerName: 'Peter',
+//       phone: '0412345678',
+//       isVip: true,
+//       heads: 2,
+//       startedWaiting: n,
+//       eta: 10,
+//       finishedWaiting: n
+//     }
+//   ]
+//
+// });
 
 // Restaurant.create(macdonald);
 // Customer.create(seed_customer);
