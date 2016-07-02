@@ -38,8 +38,8 @@ function addRestaurant(req, res){
 
 function addCustomer(req, res){
   // Restaurant.findOne({_id: "577606322f016641459de0e0" } , function(err, restaurant){
-  Restaurant.findOne({_id: "57771ea2c31b681085727b6c" } , function(err, restaurant){ //niall seed
-    if(err) res.status(401).json({message: "Hello"});
+  Restaurant.findOne({_id: "577754b4e5f4ee7d3a8b94b3" } , function(err, restaurant){ //niall seed
+    if(err) res.status(401).json({message: "couldnt find restaurant"});
     Customer.create({
       customerName: "NIALL",
       phone: "0430852260",
@@ -48,11 +48,11 @@ function addCustomer(req, res){
       eta: 10,
       _restaurant: restaurant._id
     }, function(err, customer){
-      if(err) res.status(400).json({message: "FUCK!"});
+      if(err) res.status(400).json({message: "couldnt create user!"});
       // res.json(customer);
       // Restaurant.findOneAndUpdate({_id: "577606322f016641459de0e0"},{$push: {customers: customer}}, function(err, rest){
-      Restaurant.findOneAndUpdate({_id: "57771ea2c31b681085727b6c"},{$push: {customers: customer}},  function(err, rest){ //niall seed
-        if(err) res.status(400).json({message: "FUCK ME"});
+      Restaurant.findOneAndUpdate({_id: "577754b4e5f4ee7d3a8b94b3"},{$push: {customers: customer}},  function(err, rest){ //niall seed
+        if(err) res.status(400).json({message: "couldnt push user to restaurant"});
         res.status(202).json(rest);
       });
     }
