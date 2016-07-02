@@ -29,6 +29,26 @@ var RestaurantSchema = new mongoose.Schema({
       type: String,
       required: true
    },
+   cuisine: {
+     type: String
+   },
+   username: {
+     type: String,
+     required: true,
+     unique: true,
+     select: false
+   },
+   password: {
+     type: String,
+     required: true,
+     select: false
+   },
+   restaurantEmail: {
+     type: String,
+     unique: true,
+     required: true,
+     select: false
+   },
    customers : [{
      type: mongoose.Schema.ObjectId,
      ref: 'Customer'
