@@ -39,7 +39,7 @@ function addRestaurant(req, res){
 function addCustomer(req, res) {
   // Restaurant.findOne({_id: "577606322f016641459de0e0" } , function(err, restaurant){
   Restaurant.findOne({
-    _id: "577754b4e5f4ee7d3a8b94b3" //niall seed
+    _id: "5778869baef2a4fd1888176b" //niall seed
   }, function(err, restaurant) {
     if (err) res.status(401).json({
       message: "couldnt find restaurant"
