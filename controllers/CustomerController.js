@@ -38,7 +38,7 @@ function addCustomer(req, res) {
       _restaurant: restaurant._id
     }, function(err, customer) {
       if (err) res.status(400).json({message: "Couldn't create user!"});
-      Restaurant.findOneAndUpdate({_id: restaurant_id},
+      Restaurant.findOneAndUpdate({_id: restaurant._id},
         {$push:{customers: customer}}, function(err, restaurant) {
         if (err) res.status(400).json({message: "couldnt push user to restaurant"});
         res.status(202).json(restaurant);
