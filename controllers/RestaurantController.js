@@ -11,7 +11,6 @@ function showRestaurants(req, res){
 }
 
 function addRestaurant(req, res){
-  var restaurantParams = req.body;
   Restaurant.create(restaurantParams , function(err, restaurant){
     if(err) res.status(401).json({message: "Error in creating a new restaurant"});
     res.json(restaurant);

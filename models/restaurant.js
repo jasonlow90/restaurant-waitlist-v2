@@ -83,24 +83,24 @@ var Restaurant = new mongoose.Schema({
 
 // Let's encrypt our passwords using only the model!
 // This is a hook, a function that runs just before you save.
-Restaurant.pre('save', function(next) {
-    var restaurant = this;
-
-    // only hash the name if it has been modified (or is new)
-    if (!restaurant.isModified('password')) return next();
-
-    // just for example purposes, let's keep the agent's name in a separate field
-   //  user.unencryptedName = agent.name;
-    // bcrypt can come up with a salt for us (just pass it a number)
-    restaurant.password = bcrypt.hashSync(restaurant.password, 10);
-
-    next();
-});
-
-Restaurant.methods.authenticate = function(candidatePassword, callback){
-  //invoke bcrypt to attempt to compare our user with the stored user pasword
-  bcrypt.compare(candidatePassword, this.password, callback);
-};
+// Restaurant.pre('save', function(next) {
+//     var restaurant = this;
+//
+//     // only hash the name if it has been modified (or is new)
+//     if (!restaurant.isModified('password')) return next();
+//
+//     // just for example purposes, let's keep the agent's name in a separate field
+//    //  user.unencryptedName = agent.name;
+//     // bcrypt can come up with a salt for us (just pass it a number)
+//     restaurant.password = bcrypt.hashSync(restaurant.password, 10);
+//
+//     next();
+// });
+//
+// Restaurant.methods.authenticate = function(candidatePassword, callback){
+//   //invoke bcrypt to attempt to compare our user with the stored user pasword
+//   bcrypt.compare(candidatePassword, this.password, callback);
+// };
 
 // Export the model.
 module.exports = mongoose.model('Restaurant', Restaurant);

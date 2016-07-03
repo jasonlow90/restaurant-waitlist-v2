@@ -22,14 +22,13 @@ function showCustomer(req, res){
 }
 
 function addCustomer(req, res) {
+  var restaurantId = req.params.restaurantId;
   var customerParams = req.body; // The data will be coming out from the form
 
   Restaurant.findOne({
-    _id: "5778869baef2a4fd1888176b" //niall seed
+    _id: req.params.restaurantId //niall seed
   }, function(err, restaurant) {
-    if (err) res.status(401).json({
-      message: "couldnt find restaurant"
-    });
+    if (err) res.status(401).json({message: "couldnt find restaurant"});
     Customer.create({
       customerName: req.body.customerName,
       phone: req.body.phone,
@@ -38,19 +37,10 @@ function addCustomer(req, res) {
       eta: req.body.eta,
       _restaurant: restaurant._id
     }, function(err, customer) {
-      if (err) res.status(400).json({
-        message: "Couldn't create user!"
-      });
-      Restaurant.findOneAndUpdate({
-        _id: "5778869baef2a4fd1888176b" //niall seed
-      }, {
-        $push: {
-          customers: customer
-        }
-      }, function(err, restaurant) {
-        if (err) res.status(400).json({
-          message: "couldnt push user to restaurant"
-        });
+      if (err) res.status(400).json({message: "Couldn't create user!"});
+      Restaurant.findOneAndUpdate({_id: restaurant_id},
+        {$push:{customers: customer}}, function(err, restaurant) {
+        if (err) res.status(400).json({message: "couldnt push user to restaurant"});
         res.status(202).json(restaurant);
       });
     });
