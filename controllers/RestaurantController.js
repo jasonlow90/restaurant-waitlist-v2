@@ -11,7 +11,19 @@ function showRestaurants(req, res){
 }
 
 function addRestaurant(req, res){
-  Restaurant.create(restaurantParams , function(err, restaurant){
+  var restaurantParams = req.body;
+  Restaurant.create({
+    "postcode": restaurantParams.postcode,
+    "suburb": restaurantParams.suburb,
+    "address": restaurantParams.address,
+    "phone": restaurantParams.phone,
+    "website": restaurantParams.website,
+    "restaurantName": restaurantParams.restaurantName,
+    "cuisine": restaurantParams.cuisine,
+    "username": restaurantParams.username,
+    "password": restaurantParams.password,
+    "restaurantEmail": restaurantParams.restaurantEmail
+  } , function(err, restaurant){
     if(err) res.status(401).json({message: "Error in creating a new restaurant"});
     res.json(restaurant);
   });
@@ -23,15 +35,15 @@ function updateRestaurant(req, res){
   var restaurantId = req.params.restaurantId;
   var restaurantParams = req.body;
   Restaurant.findOneAndUpdate({_id: restaurantId }, {
-   "postcode": req.body.postcode,
-   "suburb": req.body.suburb,
-   "address": req.body.address,
-   "phone": req.body.phone,
-   "website": req.body.website,
-   "restaurantName": req.body.restaurantName,
-   "cuisine": req.body.cuisine,
-   "username": req.body.username,
-   "restaurantEmail": req.body.restaurantEmail
+   "postcode": restaurantParams.postcode,
+   "suburb": restaurantParams.suburb,
+   "address": restaurantParams.address,
+   "phone": restaurantParams.phone,
+   "website": restaurantParams.website,
+   "restaurantName": restaurantParams.restaurantName,
+   "cuisine": restaurantParams.cuisine,
+   "username": restaurantParams.username,
+   "restaurantEmail": restaurantParams.restaurantEmail
   }, function (err, restaurant){
     if(err) res.json({message: "Can't update restaurant"});
     res.json(restaurant);
