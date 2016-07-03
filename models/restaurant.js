@@ -59,15 +59,26 @@ var RestaurantSchema = new mongoose.Schema({
  ]
 });
 
-Restaurant.pre('save', function(next) {
+RestaurantSchema.pre('save', function(next) {
   var retaurant = this;
   // NOC: pseudo code
   // take the restaurantName value, add a space, then add on the suburb name.
+  var restaurantName = restaurant.restaurantName;
+  restaurantName = restaurantName.toLowerCase().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'-');
+
+  var suburb = restaurant.suburb;
   // lowercase the whole thing
   // remove anything except letters and numbers
   // replace spaces with dashes
   // insert final string into restaurantNameSuburb
   next();
+  // **********
+  // var customer = this;
+  // var now = new Date();
+  // var timeETA = moment(now);
+  // timeETA = timeETA.add(customer.eta, 'minutes');
+  // this.finishedWaiting = timeETA;
+  // next();
 });
 
 // Export the model.
