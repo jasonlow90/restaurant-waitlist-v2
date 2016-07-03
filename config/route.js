@@ -16,10 +16,10 @@ router.get('/', restaurantController.showRestaurants); // show all restaurants
 // ----------customers----------
 router.get('/:restaurantSuburb', restaurantController.getAllCustomers); // view list of customers waiting
 router.get('/:restaurantSuburb/:phone', restaurantController.getAllCustomers); // view list of customers waiting, but with the customer whose phone number is in url shown highlighted.
-router.get('/:restaurantSuburb/addCustomer', restaurantController.addCustomer); // render the add customer form
+router.get('/:restaurantSuburb/newCustomer', restaurantController.newCustomer); // render the add customer form
 router.post('/:restaurantSuburb/addCustomer', restaurantController.addCustomer); // submit customer to the database
 router.post('/:restaurantSuburb/removeCustomer', restaurantController.removeCustomer); // customer has been seated or canceled their 'order'
-router.get('/:restaurantSuburb/updateCustomer', restaurantController.updateCustomer); // render form - update (should also include a delete link for convenience)
+router.get('/:restaurantSuburb/editCustomer', restaurantController.editCustomer); // render form - update (should also include a delete link for convenience)
 router.post('/:restaurantSuburb/updateCustomer', restaurantController.updateCustomer); // submit customer updates to database
 
 // ----------restaurants---------- admin pages only, not viewable to public
