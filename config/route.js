@@ -34,6 +34,7 @@ router.post('/:restaurantNameSuburb/addcustomer', customerController.addCustomer
 router.delete('/:restaurantNameSuburb/:phone/removecustomer', customerController.removeCustomer); // customer has been seated or canceled their 'order'
 router.put('/:restaurantNameSuburb/:phone/update', customerController.updateCustomer); // submit customer updates to database
 
+
 // ----------testing routes----------
 // router.get('/customer/:id', restaurantController.showCustomer);
 
