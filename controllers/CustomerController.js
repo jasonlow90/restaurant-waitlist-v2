@@ -3,9 +3,9 @@ var User = require('../models/user');
 var Customer = require('../models/customer');
 
 function getAllCustomers(req, res){
-  var restaurantId = req.params.restaurantSuburb;
+  var restaurantNameSuburb = req.params.restaurantNameSuburb;
 
-  Restaurant.findOne({_id: restaurantId}).populate('customers').exec(function (err, customer){
+  Restaurant.findOne({restaurantNameSuburb: restaurantNameSuburb}).populate('customers').exec(function (err, customer){
     if(err) res.json({message: "Can't find restaurant/customer list"});
     res.json(customer.customers);
   });
@@ -22,11 +22,11 @@ function showCustomer(req, res){
 }
 
 function addCustomer(req, res) {
-  var restaurantId = req.params.restaurantSuburb;
+  var restaurantNameSuburb = req.params.restaurantNameSuburb;
   var customerParams = req.body; // The data will be coming out from the form
 
   Restaurant.findOne({
-    _id: req.params.restaurantId //niall seed
+    restaurantNameSuburb: req.params.restaurantNameSuburb //niall seed
   }, function(err, restaurant) {
     if (err) res.status(401).json({message: "couldnt find restaurant"});
     Customer.create({
@@ -49,10 +49,10 @@ function addCustomer(req, res) {
 
 function updateCustomer(req, res){
 
-  var restaurantId = req.params.restaurantId;
+  var restaurantNameSuburb = req.params.restaurantNameSuburb;
   var customerPhone = req.params.phone;
   var customerParams = req.body;
-  Restaurant.findOne({_id: restaurantId }, function (err, restaurant){
+  Restaurant.findOne({restaurantNameSuburb: restaurantNameSuburb }, function (err, restaurant){
     if(err) res.json({message: "Can't update restaurant"});
     Customer.findOneAndUpdate({_restaurant: restaurant._id, phone: customerPhone }, {
       customerName: req.body.customerName,
@@ -69,8 +69,9 @@ function updateCustomer(req, res){
 
 
 function removeCustomer(req,res){
+  var restaurantNameSuburb = req.params.restaurantNameSuburb;
   var customerParams = req.body;
-  Restaurant.findOneAndUpdate({restaurantName: 'Macdonald'},{$pull: {customers: customerParams}} , function(err, restaurant){
+  Restaurant.findOneAndUpdate({restaurantNameSuburb: restaurantNameSuburb},{$pull: {customers: customerParams}} , function(err, restaurant){
     if(err) res.status(401).json({message: err.errmsg});
     if(!restaurant) res.status(401).json({message: "No such customer"});
     res.json("Success Removed!");
