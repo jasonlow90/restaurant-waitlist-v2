@@ -8,11 +8,6 @@ var restaurantController = require('../controllers/RestaurantController');
 var customerController = require('../controllers/CustomerController');
 
 
-// router.get('/:restaurantSuburb/admin', expressJWT({secret: secret})); // view list of customers waiting; selecting restaurant by Id
-// router.use('/:restaurantSuburb/addcustomer', expressJWT({secret: secret}));
-// router.use('/:restaurantSuburb/removecustomer', expressJWT({secret: secret}));
-// router.use('/:restaurantSuburb/:phone/update', expressJWT({secret: secret}));
-// router.use('/:restaurantSuburb/admin', expressJWT({secret: secret}));
 
 
 
@@ -37,5 +32,10 @@ router.put('/:restaurantNameSuburb/:phone/update', customerController.updateCust
 
 // ----------testing routes----------
 // router.get('/customer/:id', restaurantController.showCustomer);
+router.use('/:restaurantSuburb/admin', expressJWT({secret: secret})); // view list of customers waiting; selecting restaurant by Id
+router.use('/:restaurantSuburb/addcustomer', expressJWT({secret: secret}));
+router.use('/:restaurantSuburb/removecustomer', expressJWT({secret: secret}));
+router.use('/:restaurantSuburb/:phone/update', expressJWT({secret: secret}));
+router.use('/:restaurantSuburb/admin', expressJWT({secret: secret}));
 
 module.exports = router;
