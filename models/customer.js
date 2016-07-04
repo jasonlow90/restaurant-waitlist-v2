@@ -21,7 +21,8 @@ var Customer = new mongoose.Schema({
    },
    isVip: {
       type: Boolean,
-      default: false
+      default: false,
+      select: false
    },
    heads: {
       type: Number,
