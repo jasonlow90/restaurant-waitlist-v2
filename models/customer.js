@@ -48,7 +48,7 @@ Customer.pre('save', function(next) {
   var customer = this;
   var now = new Date();
   var timeETA = moment(now);
-  timeETA = timeETA.add(customer.eta, 'minutes');
+  timeETA = timeETA.add(customer.eta, 'minutes').add(30, 'seconds');
   this.finishedWaiting = timeETA;
   next();
 });
