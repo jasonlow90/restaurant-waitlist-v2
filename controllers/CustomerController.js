@@ -3,7 +3,7 @@ var User = require('../models/user');
 var Customer = require('../models/customer');
 
 function getAllCustomers(req, res){
-  var restaurantId = req.params.restaurantId;
+  var restaurantId = req.params.restaurantSuburb;
 
   Restaurant.findOne({_id: restaurantId}).populate('customers').exec(function (err, customer){
     if(err) res.json({message: "Can't find restaurant/customer list"});
@@ -22,7 +22,7 @@ function showCustomer(req, res){
 }
 
 function addCustomer(req, res) {
-  var restaurantId = req.params.restaurantId;
+  var restaurantId = req.params.restaurantSuburb;
   var customerParams = req.body; // The data will be coming out from the form
 
   Restaurant.findOne({

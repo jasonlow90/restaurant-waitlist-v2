@@ -1,7 +1,32 @@
 var Restaurant = require('../models/restaurant');
 var User = require('../models/user');
 var Customer = require('../models/customer');
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
+var secret = "waiting_list";
 
+function signin (req,res){
+  var restaurantParams = req.body;
+  console.log(restaurantParams);
+  Restaurant.findOne({restaurantEmail: restaurantParams.restaurantEmail}, function(err, restaurant){
+    console.log(restaurant);
+    if(err) res.status(402).json({message: err.errmsg});
+    if(!restaurant) res.status(402).json({message: "Can't find restaurant"});
+    restaurant.authenticate(restaurantParams.password, function(err, isMatch){
+      if(err) res.status(402).json({message: err.errmsg});
+      if(isMatch){
+        var token = jwt.sign(restaurant, secret);
+        res.json({
+          restaurant: restaurant,
+          token: token
+        });
+      } else {
+
+        res.status(401).json({message: "Incorrect Password"});
+      }
+    });
+  });
+}
 
 function showRestaurants(req, res){
   Restaurant.find({}).populate('customers').exec(function (err, customer){
@@ -24,7 +49,8 @@ function addRestaurant(req, res){
     "password": restaurantParams.password,
     "restaurantEmail": restaurantParams.restaurantEmail
   } , function(err, restaurant){
-    if(err) res.status(401).json({message: "Error in creating a new restaurant"});
+    console.log(err);
+    if(err) res.status(401).json({message: err.errmsg});
     res.json(restaurant);
   });
 
@@ -56,5 +82,6 @@ function updateRestaurant(req, res){
 module.exports = {
   showRestaurants: showRestaurants,
   addRestaurant: addRestaurant,
-  updateRestaurant: updateRestaurant
+  updateRestaurant: updateRestaurant,
+  signin: signin
 };
