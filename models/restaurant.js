@@ -40,7 +40,7 @@ var Restaurant = new mongoose.Schema({
      type: String,
      required: true,
      unique: true,
-     select: false
+    //  select: false
    },
    password: {
      type: String,
