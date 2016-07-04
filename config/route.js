@@ -8,11 +8,11 @@ var restaurantController = require('../controllers/RestaurantController');
 var customerController = require('../controllers/CustomerController');
 
 
-router.get('/:restaurantSuburb/admin', expressJWT({secret: secret})); // view list of customers waiting; selecting restaurant by Id
-router.use('/:restaurantSuburb/addcustomer', expressJWT({secret: secret}));
-router.use('/:restaurantSuburb/removecustomer', expressJWT({secret: secret}));
-router.use('/:restaurantSuburb/:phone/update', expressJWT({secret: secret}));
-router.use('/:restaurantSuburb/admin', expressJWT({secret: secret}));
+// router.get('/:restaurantSuburb/admin', expressJWT({secret: secret})); // view list of customers waiting; selecting restaurant by Id
+// router.use('/:restaurantSuburb/addcustomer', expressJWT({secret: secret}));
+// router.use('/:restaurantSuburb/removecustomer', expressJWT({secret: secret}));
+// router.use('/:restaurantSuburb/:phone/update', expressJWT({secret: secret}));
+// router.use('/:restaurantSuburb/admin', expressJWT({secret: secret}));
 
 
 
@@ -22,7 +22,7 @@ router.use('/:restaurantSuburb/admin', expressJWT({secret: secret}));
 router.get('/', restaurantController.showRestaurants); // show all restaurants
 // ----------restaurants---------- admin pages only, not viewable to public
 router.post('/restaurant/add', restaurantController.addRestaurant); // submit restaurant to the database
-router.post('/:restaurantId/updaterestaurant', restaurantController.updateRestaurant); // submit restaurant to the database
+router.post('/:restaurantNameSuburb/updaterestaurant', restaurantController.updateRestaurant); // submit restaurant to the database
 router.post('/signin', restaurantController.signin);
 
 
@@ -31,7 +31,7 @@ router.get('/:restaurantNameSuburb', customerController.getAllCustomers); // vie
 router.get('/:restaurantNameSuburb/admin', customerController.getAllCustomers); // view list of customers waiting, but with the customer whose phone number is in url shown highlighted.
 router.get('/:restaurantNameSuburb/:phone', customerController.showCustomer); // view list of customers waiting, but with the customer whose phone number is in url shown highlighted.
 router.post('/:restaurantNameSuburb/addcustomer', customerController.addCustomer); // submit customer to the database
-router.post('/:restaurantNameSuburb/removecustomer', customerController.removeCustomer); // customer has been seated or canceled their 'order'
+router.post('/:restaurantNameSuburb/:phone/removecustomer', customerController.removeCustomer); // customer has been seated or canceled their 'order'
 router.post('/:restaurantNameSuburb/:phone/update', customerController.updateCustomer); // submit customer updates to database
 
 // ----------testing routes----------
