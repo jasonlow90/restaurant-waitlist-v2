@@ -47,17 +47,19 @@ function addCustomer(req, res) {
 
 function updateCustomer(req, res){
 
-  Restaurant.findOne({restaurantNameSuburb: req.params.restaurantNameSuburb }, function (err, restaurant){
-    if(err) res.json({message: "Can't update restaurant"});
-    Customer.findOneAndUpdate({_restaurant: restaurant._id, phone: req.body.phone }, {
-      customerName: req.body.customerName,
-      phone: req.body.phone,
-      heads: req.body.heads,
-      eta: req.body.eta
-    }, function(err, customer){
-      if(err) res.status(400).json({message: "Unable to update customers"});
-      res.status(202).json(customer);
-    });
+  // console.log("updating customer");
+  console.log(req.body);
+  Customer.findOneAndUpdate({phone: req.body.phone },{ $set:
+    {
+    customerName: req.body.customerName,
+    phone: req.body.phone,
+    heads: req.body.heads,
+    eta: req.body.eta
+  }},
+   function(err, customer){
+     console.log(customer);
+    if(err) res.status(400).json({message: "Unable to update customers"});
+    res.status(202).json(customer);
   });
 }
 
