@@ -27,13 +27,12 @@ router.post('/signin', restaurantController.signin);
 
 
 // ----------customers----------
-router.get('/:restaurantNameSuburb/index', customerController.getAllCustomers); // view list of customers waiting; selecting restaurant by Id
+router.get('/:restaurantNameSuburb', customerController.getAllCustomers); // view list of customers waiting; selecting restaurant by Id
 router.get('/:restaurantNameSuburb/admin', customerController.getAllCustomers); // view list of customers waiting, but with the customer whose phone number is in url shown highlighted.
 router.get('/:restaurantNameSuburb/:phone', customerController.showCustomer); // view list of customers waiting, but with the customer whose phone number is in url shown highlighted.
 router.post('/:restaurantNameSuburb/addcustomer', customerController.addCustomer); // submit customer to the database
 router.post('/:restaurantNameSuburb/removecustomer', customerController.removeCustomer); // customer has been seated or canceled their 'order'
 router.post('/:restaurantNameSuburb/:phone/update', customerController.updateCustomer); // submit customer updates to database
-
 
 // ----------testing routes----------
 // router.get('/customer/:id', restaurantController.showCustomer);
