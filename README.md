@@ -25,7 +25,19 @@ There are two repositories:
 - Inside the backend app, run command `npm install` to download the most appropriate node_modules for your system.
 - Run a server on port 3000 for the backend. Then you may simply visit `home.html` to get started.
 
+
+## General approach
+-   
+
 ## Unsolved Problems
+- VIP - allowing a customer to have additional functionality - ie:
+  - being able to delete themselves from the list
+  - being able to update there ETA
+- Incorporate the ability to t send a text url to users phones private monitoring:
+  - When the Restaurant adds a customer to the queue - a text message will be sent to the user with a url (using their mobile phone number as the authentication) - the customer will then be able to monitor their progress in the queue as a highlighted item.
+  - If the user is a VIP then this view would alow them to access their added functionality
+
+
 
 - When editing any customer on a list, the ETA of the final person in the list is the value that is always passed into the 'edit' form.
 - 
