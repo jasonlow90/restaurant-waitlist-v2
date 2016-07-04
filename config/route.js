@@ -38,7 +38,4 @@ router.put('/:restaurantNameSuburb/:phone/update', customerController.updateCust
 // ----------testing routes----------
 // router.get('/customer/:id', restaurantController.showCustomer);
 
-// ----------users---------- =>DEPRECATED
-// router.post('/signin', usersController.authenticateUser); =>DEPRECATED
-
 module.exports = router;
