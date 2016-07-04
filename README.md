@@ -1,13 +1,27 @@
 # Restaurant Waitlist App - Backend Repository
 
-## Technologies Used
+## Explanations of the Technologies Used
 
-- NodeJS
-- ExpressJS
-- jQuery
-- momentJS
-- MongoDB
-- Mongoose
+- NodeJS - [an open-source, cross-platform runtime environment for developing server-side Web applications.] (https://en.wikipedia.org/wiki/Node.js)
+- ExpressJS - [a minimal and flexible Node.js web application framework](http://expressjs.com/) that provides a robust set of features for web and mobile applications.
+- jQuery - [a fast, small, and feature-rich JavaScript library.](https://jquery.com/) It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
+- momentJS - [Parse, validate, manipulate, and display dates](http://momentjs.com/) in JavaScript.
+- MongoDB - [A free and open-source cross-platform document-oriented database.](https://www.mongodb.com/) Classified as a NoSQL database, MongoDB avoids the traditional table-based relational database structure in favor of JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster.]
+- Mongoose - A [straight-forward, schema-based solution](http://mongoosejs.com/) to model application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box.
+
+## Installation Instructions
+
+There are two repositories:
+- This one - a backend app serves up an API
+- A front end jQuery/AJAX app that consumes the API
+
+1. Install node: https://nodejs.org/en/download/
+2. Install Node Package Manager:
+2. git clone both repositories:
+  - [https://github.com/jasonlow90/restaurant-waitlist-v2.git](https://github.com/jasonlow90/restaurant-waitlist-v2.git)
+  - [link](url)
+
+## Unsolved Problems
 
 --------------------------------------------------------------------------------
 
