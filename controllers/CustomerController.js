@@ -62,15 +62,14 @@ function updateCustomer(req, res){
 }
 
 
-function removeCustomer(req,res){
-  // Get customer's full data by looking up for the customer phone number
-  Customer.findOne({phone: req.params.phone, restaurantNameSuburb: req.params.restaurantNameSuburb}, function(err, customer){
-    if(err) res.status(202).json({message: err.errmsg});
-    // Pulling the specific customer's data out of the customers array
-    Restaurant.findOneAndUpdate({restaurantNameSuburb: req.params.restaurantNameSuburb},{$pull: {customers: customer}} , function(err, restaurant){
-      if(err) res.status(401).json({message: err.errmsg});
-      res.status(202).json("Successfully removed");
+function removeCustomer(req, res) {
+  Customer.findOneAndRemove({
+    phone: req.params.phone
+  }, function(err, customer) {
+    if (err) res.status(400).json({
+      message: "Unable to delete customers"
     });
+    res.status(202).json("Successfully removed");
   });
 }
 
