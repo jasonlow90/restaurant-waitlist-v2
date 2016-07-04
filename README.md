@@ -15,13 +15,20 @@ There are two repositories:
 - This one - a backend app serves up an API
 - A front end jQuery/AJAX app that consumes the API
 
+#### How to install
+
 1. Install node: https://nodejs.org/en/download/
-2. Install Node Package Manager:
-2. git clone both repositories:
-  - [https://github.com/jasonlow90/restaurant-waitlist-v2.git](https://github.com/jasonlow90/restaurant-waitlist-v2.git)
-  - [link](url)
+- Install Node Package Manager:
+- git clone both repositories:
+  - Backend: [https://github.com/jasonlow90/restaurant-waitlist-v2.git](https://github.com/jasonlow90/restaurant-waitlist-v2.git)
+  - Frontend: [https://github.com/peterdaniel-fewd/restaurant-waitlist-frontend](https://github.com/peterdaniel-fewd/restaurant-waitlist-frontend)
+- Inside the backend app, run command `npm install` to download the most appropriate node_modules for your system.
+- Run a server on port 3000 for the backend. Then you may simply visit `home.html` to get started.
 
 ## Unsolved Problems
+
+- When editing any customer on a list, the ETA of the final person in the list is the value that is always passed into the 'edit' form.
+- 
 
 --------------------------------------------------------------------------------
 
