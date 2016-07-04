@@ -3,11 +3,10 @@ var User = require('../models/user');
 var Customer = require('../models/customer');
 
 function getAllCustomers(req, res){
-  var restaurantNameSuburb = req.params.restaurantNameSuburb;
-
-  Restaurant.findOne({restaurantNameSuburb: restaurantNameSuburb}).populate('customers').exec(function (err, customer){
-    if(err) res.json({message: "Can't find restaurant/customer list"});
-    res.json(customer.customers);
+  Restaurant.findOne({ restaurantNameSuburb: req.params.restaurantNameSuburb})
+    .populate('customers').exec(function (err, restaurant){
+    if(err) res.status(401).json({message: "Can't find restaurant/customer list"});
+    res.json(restaurant.customers);
   });
 }
 
