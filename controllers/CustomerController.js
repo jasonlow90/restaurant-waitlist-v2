@@ -11,27 +11,26 @@ function getAllCustomers(req, res){
 }
 
 function showCustomer(req, res){
-  function findCustomer(customers){
-    return customers.customerName === req.params.customer;
-  }
-  Restaurant.findOne({restaurantName: "Macdonald"}, function(err, restaurant){
+
+
+  Restaurant.findOne({restaurantNameSuburb: req.params.restaurantNameSuburb}, function(err, restaurant){
     if(err) res.status(402).json({message: "Can't find restaurant"});
-    res.status(200).json(restaurant.customers.find(findCustomer));
+    Customer.findOne({_restaurant: restaurant._id, phone: req.params.phone}, function (err, customer){
+      if(err) res.status(402).json({message: err.errmsg});
+      res.status(202).json(customer);
+    });
   });
 }
 
 function addCustomer(req, res) {
-  var restaurantNameSuburb = req.params.restaurantNameSuburb;
-  var customerParams = req.body; // The data will be coming out from the form
 
   Restaurant.findOne({
-    restaurantNameSuburb: req.params.restaurantNameSuburb //niall seed
+    restaurantNameSuburb: req.params.restaurantNameSuburb
   }, function(err, restaurant) {
     if (err) res.status(401).json({message: "couldnt find restaurant"});
     Customer.create({
       customerName: req.body.customerName,
       phone: req.body.phone,
-      isVip: req.body.isVip,
       heads: req.body.heads,
       eta: req.body.eta,
       _restaurant: restaurant._id
@@ -48,15 +47,11 @@ function addCustomer(req, res) {
 
 function updateCustomer(req, res){
 
-  var restaurantNameSuburb = req.params.restaurantNameSuburb;
-  var customerPhone = req.params.phone;
-  var customerParams = req.body;
-  Restaurant.findOne({restaurantNameSuburb: restaurantNameSuburb }, function (err, restaurant){
+  Restaurant.findOne({restaurantNameSuburb: req.params.restaurantNameSuburb }, function (err, restaurant){
     if(err) res.json({message: "Can't update restaurant"});
-    Customer.findOneAndUpdate({_restaurant: restaurant._id, phone: customerPhone }, {
+    Customer.findOneAndUpdate({_restaurant: restaurant._id, phone: req.body.phone }, {
       customerName: req.body.customerName,
       phone: req.body.phone,
-      isVip: req.body.isVip,
       heads: req.body.heads,
       eta: req.body.eta
     }, function(err, customer){
@@ -68,12 +63,14 @@ function updateCustomer(req, res){
 
 
 function removeCustomer(req,res){
-  var restaurantNameSuburb = req.params.restaurantNameSuburb;
-  var customerParams = req.body;
-  Restaurant.findOneAndUpdate({restaurantNameSuburb: restaurantNameSuburb},{$pull: {customers: customerParams}} , function(err, restaurant){
-    if(err) res.status(401).json({message: err.errmsg});
-    if(!restaurant) res.status(401).json({message: "No such customer"});
-    res.json("Success Removed!");
+  // Get customer's full data by looking up for the customer phone number
+  Customer.findOne({phone: req.params.phone, restaurantNameSuburb: req.params.restaurantNameSuburb}, function(err, customer){
+    if(err) res.status(202).json({message: err.errmsg});
+    // Pulling the specific customer's data out of the customers array
+    Restaurant.findOneAndUpdate({restaurantNameSuburb: req.params.restaurantNameSuburb},{$pull: {customers: customer}} , function(err, restaurant){
+      if(err) res.status(401).json({message: err.errmsg});
+      res.status(202).json("Successfully removed");
+    });
   });
 }
 

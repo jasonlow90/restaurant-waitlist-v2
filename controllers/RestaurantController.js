@@ -6,13 +6,10 @@ var jwt = require('jsonwebtoken');
 var secret = "waiting_list";
 
 function signin (req,res){
-  var restaurantParams = req.body;
-  console.log(restaurantParams);
-  Restaurant.findOne({restaurantEmail: restaurantParams.restaurantEmail}, function(err, restaurant){
-    console.log(restaurant);
+  Restaurant.findOne({restaurantEmail: req.body.restaurantEmail}, function(err, restaurant){
     if(err) res.status(402).json({message: err.errmsg});
     if(!restaurant) res.status(402).json({message: "Can't find restaurant"});
-    restaurant.authenticate(restaurantParams.password, function(err, isMatch){
+    restaurant.authenticate(req.body.password, function(err, isMatch){
       if(err) res.status(402).json({message: err.errmsg});
       if(isMatch){
         var token = jwt.sign(restaurant, secret);
@@ -36,18 +33,18 @@ function showRestaurants(req, res){
 }
 
 function addRestaurant(req, res){
-  var restaurantParams = req.body;
+
   Restaurant.create({
-    "postcode": restaurantParams.postcode,
-    "suburb": restaurantParams.suburb,
-    "address": restaurantParams.address,
-    "phone": restaurantParams.phone,
-    "website": restaurantParams.website,
-    "restaurantName": restaurantParams.restaurantName,
-    "cuisine": restaurantParams.cuisine,
-    "username": restaurantParams.username,
-    "password": restaurantParams.password,
-    "restaurantEmail": restaurantParams.restaurantEmail
+    "postcode": req.body.postcode,
+    "suburb": req.body.suburb,
+    "address": req.body.address,
+    "phone": req.body.phone,
+    "website": req.body.website,
+    "restaurantName": req.body.restaurantName,
+    "cuisine": req.body.cuisine,
+    "username": req.body.username,
+    "password": req.body.password,
+    "restaurantEmail": req.body.restaurantEmail
   } , function(err, restaurant){
     console.log(err);
     if(err) res.status(401).json({message: err.errmsg});
@@ -58,18 +55,16 @@ function addRestaurant(req, res){
 
 function updateRestaurant(req, res){
 
-  var restaurantId = req.params.restaurantId;
-  var restaurantParams = req.body;
-  Restaurant.findOneAndUpdate({_id: restaurantId }, {
-   "postcode": restaurantParams.postcode,
-   "suburb": restaurantParams.suburb,
-   "address": restaurantParams.address,
-   "phone": restaurantParams.phone,
-   "website": restaurantParams.website,
-   "restaurantName": restaurantParams.restaurantName,
-   "cuisine": restaurantParams.cuisine,
-   "username": restaurantParams.username,
-   "restaurantEmail": restaurantParams.restaurantEmail
+  Restaurant.findOneAndUpdate({_id: req.body.restaurantNameSuburb }, {
+   "postcode": req.body.postcode,
+   "suburb": req.body.suburb,
+   "address": req.body.address,
+   "phone": req.body.phone,
+   "website": req.body.website,
+   "restaurantName": req.body.restaurantName,
+   "cuisine": req.body.cuisine,
+   "username": req.body.username,
+   "restaurantEmail": req.body.restaurantEmail
   }, function (err, restaurant){
     if(err) res.json({message: "Can't update restaurant"});
     res.json(restaurant);
