@@ -1,5 +1,10 @@
 # Restaurant Waitlist App - Backend Repository
 
+![Alt text](screengrabs/01_home.png?raw=true "Home Page")
+![Alt text](screengrabs/02_public.png?raw=true "Public queue view")
+![Alt text](screengrabs/03_reg.png?raw=true "Registration")
+![Alt text](screengrabs/04_admin.png?raw=true "Restaurant administation")
+
 ## Explanations of the Technologies Used
 
 - NodeJS - [an open-source, cross-platform runtime environment for developing server-side Web applications.] (<https://en.wikipedia.org/wiki/Node.js>)
@@ -52,7 +57,7 @@ There are two repositories:
 - Cannot log in from anywhere other than the home page
 - When editing any customer on a list, the ETA of the final person in the list is the value that is always passed into the 'edit' form.
 - Phone numbers can't have spaces for frontend CRUD. Can be fixed with a pre.save in the model that replaces spaces with dashes '-'
-- 
+-
 
 # Improvements
 
