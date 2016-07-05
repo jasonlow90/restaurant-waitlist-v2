@@ -5,9 +5,11 @@ var Customer = require('../models/customer');
 function getAllCustomers(req, res){
   Restaurant.findOne({ restaurantNameSuburb: req.params.restaurantNameSuburb})
     .populate('customers').exec(function (err, restaurant){
-      console.log(restaurant);
     if(err) res.status(401).json({message: "Can't find restaurant/customer list"});
-    if(!restaurant) res.status(401).json({message: "Can't find restaurant"});
+    if(!restaurant || restaurant === undefined) {
+      res.status(401).json({message: "Can't find restaurant"});
+      return;
+    }
     res.status(202).json(restaurant.customers);
   });
 }
