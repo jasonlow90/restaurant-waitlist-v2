@@ -13,8 +13,8 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cors());
 // Connect to MongoDB
 // mongoose.connect('mongodb://localhost:27017/waiting_list');
-mongoose.connect('mongodb://localhost:27017/waiting_list' || process.env.MONGODB_URI);
-// Create the application.
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/waiting_list');
+// Create the application.)
 
 
 
