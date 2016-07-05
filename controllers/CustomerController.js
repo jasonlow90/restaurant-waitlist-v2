@@ -6,6 +6,7 @@ function getAllCustomers(req, res){
   Restaurant.findOne({ restaurantNameSuburb: req.params.restaurantNameSuburb})
     .populate('customers').exec(function (err, restaurant){
     if(err) res.status(401).json({message: "Can't find restaurant/customer list"});
+    if(!restaurant) res.status(401).json({message: "Can't find restaurant"});
     res.json(restaurant.customers);
   });
 }
@@ -57,8 +58,8 @@ function updateCustomer(req, res){
     eta: req.body.eta
   }},
    function(err, customer){
-     console.log(customer);
     if(err) res.status(400).json({message: "Unable to update customers"});
+    console.log(customer);
     res.status(202).json(customer);
   });
 }
