@@ -2,7 +2,7 @@
 
 ## Explanations of the Technologies Used
 
-- NodeJS - [an open-source, cross-platform runtime environment for developing server-side Web applications.] (https://en.wikipedia.org/wiki/Node.js)
+- NodeJS - [an open-source, cross-platform runtime environment for developing server-side Web applications.] (<https://en.wikipedia.org/wiki/Node.js>)
 - ExpressJS - [a minimal and flexible Node.js web application framework](http://expressjs.com/) that provides a robust set of features for web and mobile applications.
 - jQuery - [a fast, small, and feature-rich JavaScript library.](https://jquery.com/) It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
 - momentJS - [Parse, validate, manipulate, and display dates](http://momentjs.com/) in JavaScript.
@@ -12,35 +12,56 @@
 ## Installation Instructions
 
 There are two repositories:
+
 - This one - a backend app serves up an API
 - A front end jQuery/AJAX app that consumes the API
 
-#### How to install
+### How to install
 
-1. Install node: https://nodejs.org/en/download/
-- Install Node Package Manager:
-- git clone both repositories:
-  - Backend: [https://github.com/jasonlow90/restaurant-waitlist-v2.git](https://github.com/jasonlow90/restaurant-waitlist-v2.git)
-  - Frontend: [https://github.com/peterdaniel-fewd/restaurant-waitlist-frontend](https://github.com/peterdaniel-fewd/restaurant-waitlist-frontend)
-- Inside the backend app, run command `npm install` to download the most appropriate node_modules for your system.
-- Run a server on port 3000 for the backend. Then you may simply visit `home.html` to get started.
+1. Install node: <https://nodejs.org/en/download/>
+2. Install Node Package Manager:
+3. git clone both repositories:
 
+  - Backend: <https://github.com/jasonlow90/restaurant-waitlist-v2.git>
+  - Frontend: <https://github.com/peterdaniel-fewd/restaurant-waitlist-frontend>
+
+4. Inside the backend app, run command `npm install` to download the most appropriate node_modules for your system.
+
+5. Run a server on port 3000 for the backend. Then you may simply visit `home.html` to get started.
 
 ## General approach
--   
+
+-
 
 ## Unsolved Problems
+
 - VIP - allowing a customer to have additional functionality - ie:
+
   - being able to delete themselves from the list
   - being able to update there ETA
-- Incorporate the ability to t send a text url to users phones private monitoring:
+
+- Incorporate the ability to send a text url to users phones private monitoring:
+
   - When the Restaurant adds a customer to the queue - a text message will be sent to the user with a url (using their mobile phone number as the authentication) - the customer will then be able to monitor their progress in the queue as a highlighted item.
-  - If the user is a VIP then this view would alow them to access their added functionality
+  - If the user is a VIP then this view would allow them to access their added functionality
 
+- We wanted to implement a global add ETA to all customers, in the event of a delay happening in the kitchen etc.
 
+# Known Bugs
 
+- Cannot log in from anywhere other than the home page
 - When editing any customer on a list, the ETA of the final person in the list is the value that is always passed into the 'edit' form.
--
+- Phone numbers can't have spaces for frontend CRUD. Can be fixed with a pre.save in the model that replaces spaces with dashes '-'
+- 
+
+# Improvements
+
+- Make it a single page app
+- Use a frontend Framework
+- Improved slug names (`index.html`, `admin.html`, `restaruant-name/waitinglist.html` etc.)
+- Sitemap
+- Restaurant name to allow for more than 1 space
+- CSS styling for when more than 9 people are in a booking
 
 --------------------------------------------------------------------------------
 
@@ -51,7 +72,7 @@ There are two repositories:
 - Restaurant Owners/Waiter - person taking table bookings
 - Customers looking to visit a Restaurant
 
-### Restaurant Owner/Waiter - No app
+## Restaurant Owner/Waiter - No app
 
 - Once upon a time there was a Restaurant Owner / Waiter.
 - Every day, people turned up to their restaurant for brunch. It was really busy on weekends especially, so much so that people would often need to queue outside to get a table. Customers would give their names to the waiting staff upon arrival. The waiting staff would add the customers name to a paper list on a clipboard. The customer would stand around outside the restaurant until called in to be seated. They would be given a rough estimate of how long it would take to be seated.
@@ -62,7 +83,7 @@ There are two repositories:
 
 --------------------------------------------------------------------------------
 
-### Customer - No app
+## Customer - No app
 
 - Once upon a time there was a Customer.
 - Every weekend, the customer went out for brunch.
@@ -70,7 +91,7 @@ There are two repositories:
 - Because of that, the customer decided to go elsewhere for brunch.
 - Finally, the restaurant lost some business.
 
-### Customer - With app
+## Customer - With app
 
 - Once upon a time there was a Customer.
 - Every weekend, the customer went out for brunch.
