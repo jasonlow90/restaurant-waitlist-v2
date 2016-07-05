@@ -19,7 +19,9 @@
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
     "express": "^4.14.0",
+    "express-cors": "0.0.3",
     "express-jwt": "^3.4.0",
     "lodash": "^4.13.1",
     "method-override": "^2.3.6",
