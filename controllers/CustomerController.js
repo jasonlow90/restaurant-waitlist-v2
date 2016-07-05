@@ -7,7 +7,7 @@ function getAllCustomers(req, res){
     .populate('customers').exec(function (err, restaurant){
     if(err) res.status(401).json({message: "Can't find restaurant/customer list"});
     if(!restaurant) res.status(401).json({message: "Can't find restaurant"});
-    res.json(restaurant.customers);
+    res.status(202).json(restaurant.customers);
   });
 }
 
