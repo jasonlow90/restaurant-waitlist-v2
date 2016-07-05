@@ -23,6 +23,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/waiting_l
 // Add Middleware necessary for REST API's
 app.use(routes);
 // Load the models.
-app.listen(3000, function() {
-  console.log('Listening on port 3000...');
+app.listen(process.env.PORT || 3000, function() {
+  console.log('Listening on port xxxx || 3000...');
 });
