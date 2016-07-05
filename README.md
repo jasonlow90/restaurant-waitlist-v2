@@ -1,19 +1,19 @@
 # Restaurant Waitlist App - Backend Repository
 
-#Home Page
----
+### Home Page
+
 ![Alt text](screengrabs/01_home.png?raw=true "Home Page")
 
-#Public queue view
----
+### Public queue view
+
 ![Alt text](screengrabs/02_public.png?raw=true "Public queue view")
 
-#Registration
----
+### Registration
+
 ![Alt text](screengrabs/03_reg.png?raw=true "Registration")
 
-#Restaurant admin
----
+### Restaurant admin
+
 ![Alt text](screengrabs/04_admin.png?raw=true "Restaurant admin")
 ---
 
